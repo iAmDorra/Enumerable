@@ -11,9 +11,7 @@ namespace EnumerableCollections.Tests
         [TestMethod]
         public void If_the_enumeration_is_not_calculated_its_values_may_be_changed_when_the_original_collection_is_modified()
         {
-            var names = new List<string> {"Aline", "Tom", "Fen", "Fatou",
-                "Amine", "Jackito", "Ritom", "Yosr", "Cyril", "Olfa",
-                "Mathilde", "Karim"};
+            var names = GetNames();
             IEnumerable<string> partNames = names.Where(n => n.Contains("to"));
 
             Check.That(partNames).ContainsExactly("Fatou", "Jackito", "Ritom");
@@ -32,9 +30,7 @@ namespace EnumerableCollections.Tests
         [TestMethod]
         public void If_the_enumeration_is_calculated_its_values_should_not_be_changed_when_the_original_collection_is_modified()
         {
-            var names = new List<string> { "Aline", "Tom", "Fen", "Fatou",
-                "Amine", "Jackito", "Ritom", "Yosr", "Cyril", "Olfa",
-                "Mathilde", "Karim"};
+            var names = GetNames();
             IEnumerable<string> partNames = names.Where(n => n.Contains("to")).ToList();
 
             Check.That(partNames).ContainsExactly("Fatou", "Jackito", "Ritom");
@@ -48,6 +44,13 @@ namespace EnumerableCollections.Tests
             names.Remove("Amirato");
 
             Check.That(partNames).ContainsExactly("Fatou", "Jackito", "Ritom");
+        }
+
+        private List<string> GetNames()
+        {
+            return new List<string> {"Aline", "Tom", "Fen", "Fatou",
+                "Amine", "Jackito", "Ritom", "Yosr", "Cyril", "Olfa",
+                "Mathilde", "Karim"};
         }
     }
 }
