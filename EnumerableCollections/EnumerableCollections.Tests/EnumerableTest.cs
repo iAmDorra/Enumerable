@@ -76,6 +76,33 @@ namespace EnumerableCollections.Tests
             Check.That(executionTimeUsingEnumerable).IsEqualTo(executionTimeUsingList);
         }
 
+        [TestMethod]
+        public void Should_have_same_execution_time_with_list_and_Enumerable_one_when_using_tolist()
+        {
+            var nameList = GetNames();
+            var names = GetEnumerableNames();
+            var result = new List<string> { "Fatou", "Jackito", "Ritom" };
+            const string containgValue = "to";
+
+            var executionTimeUsingList = GetExecutionTime(nameList, result, containgValue);
+
+            long executionTimeUsingEnumerable = GetExecutionTime(names, result, containgValue);
+
+            Check.That(executionTimeUsingEnumerable).IsEqualTo(executionTimeUsingList);
+        }
+
+        private static long GetExecutionTime(IEnumerable<string> names, List<string> result, string containgValue)
+        {
+            var enumerableWatch = Stopwatch.StartNew();
+            IEnumerable<string> partNames = names.Where(n => n.Contains(containgValue)).ToList();
+            foreach (var item in partNames)
+            {
+                result.Contains(item);
+            }
+            enumerableWatch.Stop();
+            return enumerableWatch.ElapsedMilliseconds;
+        }
+
         private List<string> GetNames()
         {
             return new List<string> {"Aline", "Tom", "Fen", "Fatou",
