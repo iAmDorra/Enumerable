@@ -82,5 +82,71 @@ namespace EnumerableCollections.Tests
                 new Person(3, "Arnauld"),
                 new Person(1, "Arnauld"));
         }
+
+        [TestMethod]
+        public void Order_and_then_collection_with_objects()
+        {
+            IEnumerable<Person> persons = new List<Person>()
+            {
+                new Person(4, "Tom"),
+                new Person(3, "Arnauld"),
+                new Person(1, "Arnauld"),
+                new Person(2, "Olfa"),
+            };
+
+            var orderedNames = persons.OrderBy(person => person.Name)
+                .ThenBy(person => person.Id);
+
+            Check.That(orderedNames)
+                .ContainsExactly(
+                new Person(1, "Arnauld"),
+                new Person(3, "Arnauld"),
+                new Person(2, "Olfa"),
+                new Person(4, "Tom"));
+        }
+
+        [TestMethod]
+        public void Order_descending_and_then_collection_with_objects()
+        {
+            IEnumerable<Person> persons = new List<Person>()
+            {
+                new Person(4, "Tom"),
+                new Person(3, "Arnauld"),
+                new Person(1, "Arnauld"),
+                new Person(2, "Olfa"),
+            };
+
+            var orderedNames = persons.OrderByDescending(person => person.Name)
+                .ThenBy(person => person.Id);
+
+            Check.That(orderedNames)
+                .ContainsExactly(
+                new Person(4, "Tom"),
+                new Person(2, "Olfa"),
+                new Person(1, "Arnauld"),
+                new Person(3, "Arnauld"));
+        }
+
+        [TestMethod]
+        public void Order_descending_and_then_descending_collection_with_objects()
+        {
+            IEnumerable<Person> persons = new List<Person>()
+            {
+                new Person(4, "Tom"),
+                new Person(3, "Arnauld"),
+                new Person(1, "Arnauld"),
+                new Person(2, "Olfa"),
+            };
+
+            var orderedNames = persons.OrderByDescending(person => person.Name)
+                .ThenByDescending(person => person.Id);
+
+            Check.That(orderedNames)
+                .ContainsExactly(
+                new Person(4, "Tom"),
+                new Person(2, "Olfa"),
+                new Person(3, "Arnauld"),
+                new Person(1, "Arnauld"));
+        }
     }
 }

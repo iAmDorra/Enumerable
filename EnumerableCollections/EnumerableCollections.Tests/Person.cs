@@ -23,6 +23,8 @@ namespace EnumerableCollections.Tests
 
         public List<Person> Childs { get; private set; }
 
+        public int Id => id;
+
         public override bool Equals(object obj)
         {
             var person = obj as Person;
