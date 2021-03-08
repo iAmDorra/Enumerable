@@ -35,28 +35,4 @@ namespace EnumerableCollections.Tests
                 amine};
         }
     }
-
-    internal class Person
-    {
-        private string name;
-
-        public Person(string name)
-        {
-            this.name = name;
-            Childs = new List<Person>();
-        }
-
-        public List<Person> Childs { get; private set; }
-
-        public override bool Equals(object obj)
-        {
-            var person = obj as Person;
-            return person != null && person.name == this.name;
-        }
-
-        public override string ToString()
-        {
-            return this.name;
-        }
-    }
 }

@@ -10,7 +10,6 @@ namespace EnumerableCollections.Tests
     {
         [TestMethod]
         public void Linq_Filter_Order_IEnumerable()
-
         {
             IEnumerable<string> enumerable = new List<string>() {
                 "Cyril",
