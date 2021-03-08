@@ -28,18 +28,20 @@ namespace EnumerableCollections.Tests
         [TestMethod]
         public void Order_collection_with_objects()
         {
-            IEnumerable<Person> persons = new List<Person>() {
+            IEnumerable<Person> persons = new List<Person>()
+            {
+                new Person(4, "Tom"),
+                new Person(3, "Arnauld"),
                 new Person(1, "Arnauld"),
                 new Person(2, "Olfa"),
-                new Person(3, "Arnauld"),
-                new Person(4, "Tom")
             };
 
             var orderedNames = persons.OrderBy(person => person.Name);
 
             Check.That(orderedNames)
-                 .ContainsExactly(new Person(1, "Arnauld"),
-                new Person(3, "Arnauld"),
+                .ContainsExactly(
+                new Person(3, "Arnauld"), 
+                new Person(1, "Arnauld"),
                 new Person(2, "Olfa"),
                 new Person(4, "Tom"));
         }

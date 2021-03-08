@@ -26,14 +26,14 @@ namespace EnumerableCollections.Tests
         public override bool Equals(object obj)
         {
             var person = obj as Person;
-            return person != null 
+            return person != null
                 && person.name == this.name
                 && person.id == this.id;
         }
 
         public override string ToString()
         {
-            return this.id + this.name;
+            return this.id + "-" + this.name;
         }
     }
 }
