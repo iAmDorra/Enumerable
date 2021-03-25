@@ -52,7 +52,7 @@ namespace EnumerableCollections.Tests
                 new Parent(3,"Nicolas")
             };
 
-            var result = parents.GroupJoin(persons, parent => parent.Id, person => person.Id, (parent, childs) => new Groupe(parent.Id, childs))
+            var result = parents.GroupJoin(persons, parent => parent.Id, person => person.Id, (parent, childs) => new Group(parent.Id, childs))
                 .ToList();
 
             Check.That(result).CountIs(3);
