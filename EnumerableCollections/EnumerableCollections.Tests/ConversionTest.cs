@@ -55,6 +55,68 @@ namespace EnumerableCollections.Tests
             Check.That(result.Count()).IsEqualTo(oneElementCreated);
         }
 
+        [TestMethod]
+        public void Should_convert_to_Array()
+        {
+            var animals = GetAnimals();
+
+            var animalsArray = animals.ToArray();
+
+            Check.That(animalsArray).IsInstanceOfType(typeof(Animal[]));
+        }
+
+        [TestMethod]
+        public void Should_convert_to_List()
+        {
+            var animals = GetAnimals();
+
+            var animalsList = animals.ToList();
+
+            Check.That(animalsList).IsInstanceOfType(typeof(List<Animal>));
+        }
+
+        [TestMethod]
+        public void Should_convert_to_Dictionary()
+        {
+            var persons = GetPersonsWithUniqueIds();
+
+            var personsDico = persons.ToDictionary(person => person.Id);
+
+            Check.That(personsDico).IsInstanceOfType(typeof(Dictionary<int, Person>));
+        }
+
+        [TestMethod]
+        public void Should_convert_to_Lookup()
+        {
+            var persons = GetPersonsWithSameIds();
+
+            var personsLookup = persons.ToLookup(person => person.Id);
+
+            Check.That(personsLookup).IsInstanceOfType(typeof(Lookup<int, Person>));
+
+            const int idToFind = 2;
+            var personsFound = personsLookup[idToFind];
+            Check.That(personsFound).Contains(persons.Where(person => person.Id == idToFind));
+        }
+
+        private IEnumerable<Person> GetPersonsWithSameIds()
+        {
+            yield return new Person(1, "Lucie");
+            yield return new Person(3, "Laura");
+            yield return new Person(1, "Arnaud");
+            yield return new Person(3, "Anne");
+            yield return new Person(3, "Mathilde");
+            yield return new Person(2, "Laurent");
+        }
+
+        private IEnumerable<Person> GetPersonsWithUniqueIds()
+        {
+            yield return new Person(2, "Lucie");
+            yield return new Person(4, "Laura");
+            yield return new Person(1, "Arnaud");
+            yield return new Person(3, "Anne");
+        }
+
         private IEnumerable<Animal> GetAnimals()
         {
             yield return new Animal();
