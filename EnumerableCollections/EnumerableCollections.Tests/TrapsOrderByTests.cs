@@ -6,7 +6,7 @@ using System.Linq;
 namespace EnumerableCollections.Tests
 {
     [TestClass]
-    public class Enumerable_Traps_OrderBy
+    public class TrapsOrderByTests
     {
         [TestMethod]
         public void No_OrderBy_Deferred()
