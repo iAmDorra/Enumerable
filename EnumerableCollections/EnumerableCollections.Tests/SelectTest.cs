@@ -12,7 +12,7 @@ namespace EnumerableCollections.Tests
         public void Returns_persons_children()
         {
             var persons = GetPersons();
-            IEnumerable<Person> children = persons.SelectMany(person => person.Childs);
+            IEnumerable<Person> children = persons.SelectMany(person => person.Children);
 
             Check.That(children).ContainsExactly(new Person("Tom"), new Person("Fatou"));
         }
@@ -22,13 +22,13 @@ namespace EnumerableCollections.Tests
 
             Person aline = new Person("Aline");
             Person tom = new Person("Tom");
-            aline.Childs.Add(tom);
+            aline.Children.Add(tom);
             
             Person fen = new Person("Fen");
 
             Person fatou = new Person("Fatou");
             Person amine = new Person("Amine");
-            amine.Childs.Add(fatou);
+            amine.Children.Add(fatou);
             return new List<Person> {
                 aline,
                 fen,

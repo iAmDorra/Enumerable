@@ -2,7 +2,7 @@
 
 namespace EnumerableCollections.Tests
 {
-    internal class Person
+    public class Person
     {
         private string name;
         private int id;
@@ -10,7 +10,7 @@ namespace EnumerableCollections.Tests
         public Person(string name)
         {
             this.name = name;
-            Childs = new List<Person>();
+            Children = new List<Person>();
         }
 
         public Person(int id, string name) :
@@ -21,7 +21,7 @@ namespace EnumerableCollections.Tests
 
         public string Name => name;
 
-        public List<Person> Childs { get; private set; }
+        public List<Person> Children { get; }
 
         public int Id => id;
 
