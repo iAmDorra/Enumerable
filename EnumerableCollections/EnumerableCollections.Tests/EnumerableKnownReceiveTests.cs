@@ -47,7 +47,6 @@ namespace EnumerableCollections.Tests
             CheckEnumerations(requiredNumberOfCalls: 1);
         }
 
-        [TestMethod]
         public int AddImmediateOperation(IEnumerable<Person> friends)
         {
             return friends.Count();
