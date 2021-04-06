@@ -10,6 +10,18 @@ namespace EnumerableCollections.Tests
     public class EnumerableTest
     {
         [TestMethod]
+        public void Should_return_names_containing_to()
+        {
+            var names = new List<string> {"Aline", "Tom", "Fen", "Fatou", "Amine", "Jackito",
+                "Ritom", "Yosr", "Cyril", "Olfa", "Mathilde", "Nabil"};
+
+            IEnumerable<string> namesContainingTo = names.Where(n => n.Contains("to"));
+            var namesContainingToList = namesContainingTo.ToList();
+
+            Check.That(namesContainingToList).ContainsExactly("Fatou", "Jackito", "Ritom");
+        }
+
+        [TestMethod]
         public void If_the_enumeration_is_not_calculated_its_values_may_be_changed_when_the_original_collection_is_modified()
         {
             var names = GetNames();
